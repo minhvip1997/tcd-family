@@ -1,6 +1,6 @@
 const fs = require('fs');
 const docxBuffer = fs.readFileSync('TCD.docx');
-// const docxBuffer = fs.readFileSync('TCD.docx');
+// const docxBuffer = fs.readFileSync('ReportTCD2.docx');
 var mammoth = require("mammoth");
 var {Window} = require("happy-dom");
 // const officegen = require('officegen')('docx');
@@ -106,19 +106,19 @@ mammoth.convertToHtml({buffer: docxBuffer})
                 imageHeader += '<td><span style="margin-right:50px; margin-left:10px">LPCA:</span> '+ lmcaValues.toString()+'mm' + '<span style="margin-left:50px">+</span></td></tr>';
             }
             if(i===0){
-                imageFooter += `<tr><td><span style="float:left">Mean: ${meanValues[0]}</span> <span style="margin-left: 20px;">Peak: ${peakValues[0]}</span> <span style="float:right">SBI: ${sbiValues[0]}</span></td>
-                <td><span style="float:left">Mean: ${meanValues[1]}</span> <span style="margin-left: 20px;">Peak: ${peakValues[1]}</span> <span style="float:right">SBI: ${sbiValues[1]}</span></td>
-                <td><span style="float:left">Mean: ${meanValues[2]}</span> <span style="margin-left: 20px;">Peak: ${peakValues[2]}</span> <span style="float:right">SBI: ${sbiValues[2]}</span></td>
+                imageFooter += `<tr><td style="padding-left: 10px;"><span style="float:left">Mean: ${meanValues[0]}</span> <span style="margin-left: 20px;">Peak: ${peakValues[0]}</span> <span style="float:right">SBI: ${sbiValues[0]}</span></td>
+                <td style="padding-left: 10px;"><span style="float:left">Mean: ${meanValues[1]}</span> <span style="margin-left: 15px;">Peak: ${peakValues[1]}</span> <span style="float:right">SBI: ${sbiValues[1]}</span></td>
+                <td style="padding-left: 10px;"><span style="float:left">Mean: ${meanValues[2]}</span> <span style="margin-left: 20px;">Peak: ${peakValues[2]}</span> <span style="float:right">SBI: ${sbiValues[2]}</span></td>
                 </tr>
                 <tr>
-                <td><span style="float:left">PI: ${piValues[0]}</span> <span style="margin-left: 40px;">Dias: ${diasValues[0]}</span> <span style="float:right">STI: ${stiValues[0]}</span></td>
-                <td><span style="float:left">PI: ${piValues[1]}</span> <span style="margin-left: 45px;">Dias: ${diasValues[1]}</span> <span style="float:right">STI: ${stiValues[1]}</span></td>
-                <td><span style="float:left">PI: ${piValues[2]}</span> <span style="margin-left: 40px;">Dias: ${diasValues[2]}</span> <span style="float:right">STI: ${stiValues[2]}</span></td>
+                <td style="padding-left: 10px;"><span style="float:left">PI: ${piValues[0]}</span> <span style="margin-left: 40px;">Dias: ${diasValues[0]}</span> <span style="float:right">STI: ${stiValues[0]}</span></td>
+                <td style="padding-left: 10px;"><span style="float:left">PI: ${piValues[1]}</span> <span style="margin-left: 40px;">Dias: ${diasValues[1]}</span> <span style="float:right">STI: ${stiValues[1]}</span></td>
+                <td style="padding-left: 10px;"><span style="float:left">PI: ${piValues[2]}</span> <span style="margin-left: 40px;">Dias: ${diasValues[2]}</span> <span style="float:right">STI: ${stiValues[2]}</span></td>
                 </tr>
                 <tr>
-                <td><span style="float:left">RI: ${riValues[0]}</span> <span style="margin-left: 40px;">S/D: ${sdValues[0]}</span></td>
-                <td><span style="float:left">RI: ${riValues[1]}</span> <span style="margin-left: 45px;">S/D: ${sdValues[1]}</span></td>
-                <td><span style="float:left">RI: ${riValues[2]}</span> <span style="margin-left: 40px;">S/D: ${sdValues[2]}</span></td>
+                <td style="padding-left: 10px;"><span style="float:left">RI: ${riValues[0]}</span> <span style="margin-left: 40px;">S/D: ${sdValues[0]}</span></td>
+                <td style="padding-left: 10px;"><span style="float:left">RI: ${riValues[1]}</span> <span style="margin-left: 40px;">S/D: ${sdValues[1]}</span></td>
+                <td style="padding-left: 10px;"><span style="float:left">RI: ${riValues[2]}</span> <span style="margin-left: 40px;">S/D: ${sdValues[2]}</span></td>
                 </tr>`;
             }
             
@@ -132,19 +132,19 @@ mammoth.convertToHtml({buffer: docxBuffer})
                 imageHeader += '<td><span style="margin-right:50px; margin-left:10px">RPCA:</span> '+ rpcaValues.toString()+'mm' + '<span style="margin-left:50px">+</span></td></tr>';
             }
             if(i===3){
-                imageFooter += `<tr><td><span style="float:left">Mean: ${meanValues[3]}</span> <span style="margin-left: 20px;">Peak: ${peakValues[3]}</span> <span style="float:right">SBI: ${sbiValues[3]}</span></td>
-                <td><span style="float:left">Mean: ${meanValues[4]} </span><span style="margin-left: 20px;">Peak: ${peakValues[4]}</span> <span style="float:right">SBI: ${sbiValues[4]}</span></td>
-                <td><span style="float:left">Mean: ${meanValues[5]} </span><span style="margin-left: 20px;">Peak: ${peakValues[5]}</span> <span style="float:right">SBI: ${sbiValues[5]}</span></td>
+                imageFooter += `<tr><td style="padding-left: 10px;"><span style="float:left">Mean: ${meanValues[3]}</span> <span style="margin-left: 20px;">Peak: ${peakValues[3]}</span> <span style="float:right">SBI: ${sbiValues[3]}</span></td>
+                <td style="padding-left: 10px;"><span style="float:left">Mean: ${meanValues[4]} </span><span style="margin-left: 15px;">Peak: ${peakValues[4]}</span> <span style="float:right">SBI: ${sbiValues[4]}</span></td>
+                <td style="padding-left: 10px;"><span style="float:left">Mean: ${meanValues[5]} </span><span style="margin-left: 20px;">Peak: ${peakValues[5]}</span> <span style="float:right">SBI: ${sbiValues[5]}</span></td>
                 </tr>
                 <tr>
-                <td><span style="float:left">PI: ${piValues[3]}</span> <span style="margin-left:40px">Dias: ${diasValues[3]}</span> <span style="float:right">STI: ${stiValues[3]}</span></td>
-                <td><span style="float:left">PI: ${piValues[4]}</span> <span style="margin-left:45px">Dias: ${diasValues[4]}</span> <span style="float:right">STI: ${stiValues[4]}</span></td>
-                <td><span style="float:left">PI: ${piValues[5]}</span> <span style="margin-left:40px">Dias: ${diasValues[5]}</span> <span style="float:right">STI: ${stiValues[5]}</span></td>
+                <td style="padding-left: 10px;"><span style="float:left">PI: ${piValues[3]}</span> <span style="margin-left:40px">Dias: ${diasValues[3]}</span> <span style="float:right">STI: ${stiValues[3]}</span></td>
+                <td style="padding-left: 10px;"><span style="float:left">PI: ${piValues[4]}</span> <span style="margin-left:40px">Dias: ${diasValues[4]}</span> <span style="float:right">STI: ${stiValues[4]}</span></td>
+                <td style="padding-left: 10px;"><span style="float:left">PI: ${piValues[5]}</span> <span style="margin-left:40px">Dias: ${diasValues[5]}</span> <span style="float:right">STI: ${stiValues[5]}</span></td>
                 </tr>
                 <tr>
-                <td><span style="float:left">RI: ${riValues[3]}</span> <span style="margin-left:40px">S/D: ${sdValues[3]}</span></td>
-                <td><span style="float:left">RI: ${riValues[4]}</span> <span style="margin-left:40px">S/D: ${sdValues[4]}</span></td>
-                <td><span style="float:left">RI: ${riValues[5]}</span> <span style="margin-left:40px">S/D: ${sdValues[5]}</span></td>
+                <td style="padding-left: 10px;"><span style="float:left">RI: ${riValues[3]}</span> <span style="margin-left:40px">S/D: ${sdValues[3]}</span></td>
+                <td style="padding-left: 10px;"><span style="float:left">RI: ${riValues[4]}</span> <span style="margin-left:40px">S/D: ${sdValues[4]}</span></td>
+                <td style="padding-left: 10px;"><span style="float:left">RI: ${riValues[5]}</span> <span style="margin-left:40px">S/D: ${sdValues[5]}</span></td>
                 </tr>`;
             }
 
