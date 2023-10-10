@@ -1,5 +1,6 @@
 const fs = require('fs');
 const docxBuffer = fs.readFileSync('TCD.docx');
+// const docxBuffer = fs.readFileSync('TCD.docx');
 var mammoth = require("mammoth");
 var {Window} = require("happy-dom");
 // const officegen = require('officegen')('docx');
@@ -61,14 +62,6 @@ mammoth.extractRawText({buffer: docxBuffer})
      racaValues = extractMeanValues(outText, 'RACA')
      rpcaValues = extractMeanValues(outText, 'RPCA')
 
-
-    console.log(lmcaValues);
-    console.log(lacaValues);
-    console.log(lpcaValues);
-    console.log(rmcaValues);
-    console.log(racaValues);
-    console.log(rpcaValues);
-
 })
 .catch(function(error) {
     console.error(error);
@@ -94,37 +87,74 @@ mammoth.convertToHtml({buffer: docxBuffer})
         const imageRows = [];
         const imagesPerRow = 3
         for (const image of extractedImages) {
-            image.style.maxWidth = '350px';
+            image.style.maxWidth = '450px';
             image.style.marginLeft  = '10px';
             image.style.marginTop  = '5px';
+            image.style.width  = '230px';
           }
         for (let i = 0; i < extractedImages.length; i += imagesPerRow) {
             const rowImages = extractedImages.slice(i, i + imagesPerRow);
-            const rowHtml = rowImages.map(img => img.outerHTML).join('');
-            console.log('rowHtmlrowHtml',typeof rowHtml);
-
-
-            if(lmcaValues){
-                imageHeader += 'LMCA '+ lmcaValues.toString() + '+'
+            const rowHtml = rowImages.map(img => `<td>${img.outerHTML}</td>`).join('');
+            
+            if(lmcaValues && i===0){
+                imageHeader += '<tr><td><span style="margin-right:50px; margin-left:10px">LMCA:</span> '+ lmcaValues.toString()+'mm' + '<span style="margin-left:50px">+</span></td>';
             }
-            if(lacaValues){
-                imageHeader += 'LACA '+ lmcaValues.toString() + '-'
-                
+            if(lacaValues && i===0){
+                imageHeader += '<td><span style="margin-right:50px; margin-left:10px">LACA:</span> '+ lmcaValues.toString()+'mm' + '<span style="margin-left:50px">-</span></td>';
             }
-            if(lpcaValues){
-                imageHeader += 'LPCA '+ lmcaValues.toString() + '+'
-
+            if(lpcaValues && i===0){
+                imageHeader += '<td><span style="margin-right:50px; margin-left:10px">LPCA:</span> '+ lmcaValues.toString()+'mm' + '<span style="margin-left:50px">+</span></td></tr>';
+            }
+            if(i===0){
+                imageFooter += `<tr><td><span style="float:left">Mean: ${meanValues[0]}</span> <span style="margin-left: 20px;">Peak: ${peakValues[0]}</span> <span style="float:right">SBI: ${sbiValues[0]}</span></td>
+                <td><span style="float:left">Mean: ${meanValues[1]}</span> <span style="margin-left: 20px;">Peak: ${peakValues[1]}</span> <span style="float:right">SBI: ${sbiValues[1]}</span></td>
+                <td><span style="float:left">Mean: ${meanValues[2]}</span> <span style="margin-left: 20px;">Peak: ${peakValues[2]}</span> <span style="float:right">SBI: ${sbiValues[2]}</span></td>
+                </tr>
+                <tr>
+                <td><span style="float:left">PI: ${piValues[0]}</span> <span style="margin-left: 40px;">Dias: ${diasValues[0]}</span> <span style="float:right">STI: ${stiValues[0]}</span></td>
+                <td><span style="float:left">PI: ${piValues[1]}</span> <span style="margin-left: 45px;">Dias: ${diasValues[1]}</span> <span style="float:right">STI: ${stiValues[1]}</span></td>
+                <td><span style="float:left">PI: ${piValues[2]}</span> <span style="margin-left: 40px;">Dias: ${diasValues[2]}</span> <span style="float:right">STI: ${stiValues[2]}</span></td>
+                </tr>
+                <tr>
+                <td><span style="float:left">RI: ${riValues[0]}</span> <span style="margin-left: 40px;">S/D: ${sdValues[0]}</span></td>
+                <td><span style="float:left">RI: ${riValues[1]}</span> <span style="margin-left: 45px;">S/D: ${sdValues[1]}</span></td>
+                <td><span style="float:left">RI: ${riValues[2]}</span> <span style="margin-left: 40px;">S/D: ${sdValues[2]}</span></td>
+                </tr>`;
+            }
+            
+            if(rmcaValues && i===3){
+                imageHeader += '<tr><td><span style="margin-right:50px; margin-left:10px">RMCA:</span> '+ rmcaValues.toString()+'mm' + '<span style="margin-left:50px">+</span></td>';
+            }
+            if(racaValues && i===3){
+                imageHeader += '<td><span style="margin-right:50px; margin-left:10px">RACA:</span> '+ racaValues.toString()+'mm' + '<span style="margin-left:50px">+</span></td>';
+            }
+            if(rpcaValues && i===3){
+                imageHeader += '<td><span style="margin-right:50px; margin-left:10px">RPCA:</span> '+ rpcaValues.toString()+'mm' + '<span style="margin-left:50px">+</span></td></tr>';
+            }
+            if(i===3){
+                imageFooter += `<tr><td><span style="float:left">Mean: ${meanValues[3]}</span> <span style="margin-left: 20px;">Peak: ${peakValues[3]}</span> <span style="float:right">SBI: ${sbiValues[3]}</span></td>
+                <td><span style="float:left">Mean: ${meanValues[4]} </span><span style="margin-left: 20px;">Peak: ${peakValues[4]}</span> <span style="float:right">SBI: ${sbiValues[4]}</span></td>
+                <td><span style="float:left">Mean: ${meanValues[5]} </span><span style="margin-left: 20px;">Peak: ${peakValues[5]}</span> <span style="float:right">SBI: ${sbiValues[5]}</span></td>
+                </tr>
+                <tr>
+                <td><span style="float:left">PI: ${piValues[3]}</span> <span style="margin-left:40px">Dias: ${diasValues[3]}</span> <span style="float:right">STI: ${stiValues[3]}</span></td>
+                <td><span style="float:left">PI: ${piValues[4]}</span> <span style="margin-left:45px">Dias: ${diasValues[4]}</span> <span style="float:right">STI: ${stiValues[4]}</span></td>
+                <td><span style="float:left">PI: ${piValues[5]}</span> <span style="margin-left:40px">Dias: ${diasValues[5]}</span> <span style="float:right">STI: ${stiValues[5]}</span></td>
+                </tr>
+                <tr>
+                <td><span style="float:left">RI: ${riValues[3]}</span> <span style="margin-left:40px">S/D: ${sdValues[3]}</span></td>
+                <td><span style="float:left">RI: ${riValues[4]}</span> <span style="margin-left:40px">S/D: ${sdValues[4]}</span></td>
+                <td><span style="float:left">RI: ${riValues[5]}</span> <span style="margin-left:40px">S/D: ${sdValues[5]}</span></td>
+                </tr>`;
             }
 
-            imageRows.push([imageHeader+rowHtml+'<div>2</div>']);
+            imageRows.push(['<table style="margin-top:30px">'+imageHeader+'<tr>'+rowHtml+'<tr>'+imageFooter+'</table>']);
+            imageHeader = ''
+            imageFooter = ''
 
         }
-        // console.log('imageRows', imageRows.length);
 
-        
-        
         const extractedHTML = imageRows.map(row => `<div>${row}</div>`).join('');
-        // console.log('extractedHTML', extractedHTML);
 
         fs.writeFileSync('GeneratedContent2.html', extractedHTML, 'utf8', function(err) {
             if (err) {
@@ -135,7 +165,7 @@ mammoth.convertToHtml({buffer: docxBuffer})
         });
 
         const pdfOptions = {
-            format: 'A3', // You can customize the PDF format as needed
+            format: 'A4', // You can customize the PDF format as needed
         };
 
         htmlPdf.create(extractedHTML, pdfOptions).toFile('ExtractedContent3.pdf', function (err, res) {
